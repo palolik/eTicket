@@ -1,0 +1,21 @@
+<div id="list-container"></div>
+<button id="show-list-button">Show List</button>
+
+<script>
+  const array = ["apple", "banana", "orange"]; // Your array
+  const listContainer = document.getElementById("list-container");
+  const showListButton = document.getElementById("show-list-button");
+
+  function showList() {
+    // Clear existing list items before adding new ones
+    listContainer.innerHTML = "";
+
+    array.forEach(element => {
+      const listItem = document.createElement("li");
+      listItem.textContent = element;
+      listContainer.appendChild(listItem);
+    });
+  }
+
+  showListButton.addEventListener("click", showList);
+</script>
