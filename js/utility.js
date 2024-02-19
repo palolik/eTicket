@@ -1,21 +1,34 @@
 const seatIds = [];
 const arrayLength = seatIds.length;
+
 function select(){
+    const arrayLength = seatIds.length;
+   
+    if(arrayLength <= 3){
+         select2();
+         
+    }else{
+        alert("This is an alert box!");
+        console.log(arrayLength);
+    }
+}
+
+function select2(){
     document.addEventListener('click', (event) => {
         if (event.target.matches('kbd')) {
           const elementId = event.target.id;
-          
-       
           if (!seatIds.includes(elementId)) {
             addSeatList(elementId);
             setBackgroundColorById(elementId);
           removeBackgroundColorById(elementId);
           seatList();
           leanthOfSeats();
+        //   applyButton();
           }
         }
       });
-}
+} 
+
 function addSeatList(elementId){
     if (!seatIds.includes(elementId)) {
         seatIds.push(elementId); 
@@ -71,12 +84,14 @@ function seatPriceCounter(arrayLength){
     seats.textContent =arrayLength*550;
 }
 function coupon(){
+    const element = document.getElementById('applyBut');
+
     const arrayLength = seatIds.length;
     if(arrayLength == 4){
+        element.classList.remove('btn-disabled');
         var couponCodeValue = document.getElementById('userCouponCode').value;
         const seats = document.getElementById("Price").innerHTML;
         if (couponCodeValue === 'NEW15') {
-            console.log(arrayLength);
             const price2 = document.getElementById("Price2");
             price2.textContent =seats*0.75;
         }
@@ -111,7 +126,6 @@ function closeFloatingBox() {
     const elementId = "floatingDiv";
     ssetDivVisById(elementId);
      rremoveDivVisById(elementId);
-    console.log(elementId);
 
 };
 
@@ -136,6 +150,7 @@ if (seatIds.length > 0 && !isNaN(numberValue)) {
   }
 
 }
+
 
  
 
