@@ -1,20 +1,28 @@
-
+const seatIds = [];
+const arrayLength = seatIds.length;
 function select(){
     document.addEventListener('click', (event) => {
-        if (event.target.matches('kbd')) { 
+        if (event.target.matches('kbd')) {
           const elementId = event.target.id;
-          setBackgroundColorById(elementId);
+          
+       
+          if (!seatIds.includes(elementId)) {
+            addSeatList(elementId);
+            setBackgroundColorById(elementId);
           removeBackgroundColorById(elementId);
-          addSeatList(elementId);
           seatList();
           leanthOfSeats();
+          }
         }
-
       });
-
 }
-const buttonIds = [];
-const arrayLength = buttonIds.length;
+function addSeatList(elementId){
+    if (!seatIds.includes(elementId)) {
+        seatIds.push(elementId); 
+      } 
+   
+}
+
 function setBackgroundColorById(elementId){
     const element = document.getElementById(elementId);
     element.classList.add('bg-lime-400');
@@ -24,13 +32,9 @@ function removeBackgroundColorById(elementId){
     const element = document.getElementById(elementId);
     element.classList.remove('bg-white');
 }
-function addSeatList(elementId){
-   
-    buttonIds.push(elementId); 
-    console.log(buttonIds);
-}
+
 function  leanthOfSeats(){
-    const arrayLength = buttonIds.length;
+    const arrayLength = seatIds.length;
     console.log(arrayLength);
     seatCounterPlus(arrayLength);
     seatCounterMinus(arrayLength);
@@ -44,14 +48,23 @@ function seatCounterMinus(arrayLength){
     const seats = document.getElementById("seatsA");
     seats.textContent =40-arrayLength;
 }
-function seatList(){
-    buttonIds.forEach(element => {
-        const classs = 'economy';
-        const price = 500;
-        const seats = document.getElementById("seatlist");
-        seats.innerHTML = `<div class="flex flex-row justify-between"><p>${element}</p><p>${classs}</p><p>${price}</p></div>`;
-    })
-}
+function seatList() {
+    const list = document.getElementById("seatlist");
+    seatIds.forEach(id => {
+      const item = document.createElement("div");
+      item.classList.add("flex", "flex-row", "justify-between");
+      const seatId = document.createElement("p");
+      seatId.textContent = id;
+      item.appendChild(seatId);
+      const seatClass = document.createElement("p");
+      seatClass.textContent = "Economy";
+      item.appendChild(seatClass);
+      const seatPrice = document.createElement("p");
+      seatPrice.textContent = "$550";
+      item.appendChild(seatPrice);
+      list.appendChild(item);
+    });
+  }
 function seatPriceCounter(arrayLength){
     const seats = document.getElementById("Price");
     seats.textContent =arrayLength*500;
@@ -62,6 +75,42 @@ function coupon(){
     const price2 = document.getElementById("Price2");
     price2.textContent =seats*0.75;
 }
+
+
+function floatingBox() {
+    const elementId = "floatingDiv";
+    setDivVisById(elementId);
+     removeDivVisById(elementId);
+};
+
+function setDivVisById(elementId){
+    const element = document.getElementById(elementId);
+    element.classList.add('block');
+}
+
+function removeDivVisById(elementId){
+    const element = document.getElementById(elementId);
+    element.classList.remove('hidden');
+}
+function closeFloatingBox() {
+    const elementId = "floatingDiv";
+    ssetDivVisById(elementId);
+     rremoveDivVisById(elementId);
+    console.log(elementId);
+
+};
+
+function ssetDivVisById(elementId){
+    const element = document.getElementById(elementId);
+    element.classList.add('hidden');
+}
+
+function rremoveDivVisById(elementId){
+    const element = document.getElementById(elementId);
+    element.classList.remove('block');
+}
+
+
 
 
 

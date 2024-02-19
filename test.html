@@ -1,21 +1,25 @@
-<div id="list-container"></div>
-<button id="show-list-button">Show List</button>
-
+<div id="seatlist"></div>
+<button onclick="seatList()">Show List</button>
 <script>
-  const array = ["apple", "banana", "orange"]; // Your array
-  const listContainer = document.getElementById("list-container");
-  const showListButton = document.getElementById("show-list-button");
 
-  function showList() {
-    // Clear existing list items before adding new ones
-    listContainer.innerHTML = "";
+  const buttonIds = ["A", "B", "C", "D", "E", "F", "G"];
 
-    array.forEach(element => {
-      const listItem = document.createElement("li");
-      listItem.textContent = element;
-      listContainer.appendChild(listItem);
+  function seatList() {
+    const list = document.getElementById("seatlist");
+
+    buttonIds.forEach(id => {
+      const item = document.createElement("div");
+      item.classList.add("flex", "flex-row", "justify-between");
+      const seatId = document.createElement("p");
+      seatId.textContent = id;
+      item.appendChild(seatId);
+      const seatClass = document.createElement("p");
+      seatClass.textContent = "Economy";
+      item.appendChild(seatClass);
+      const seatPrice = document.createElement("p");
+      seatPrice.textContent = "$500";
+      item.appendChild(seatPrice);
+      list.appendChild(item);
     });
   }
-
-  showListButton.addEventListener("click", showList);
 </script>
